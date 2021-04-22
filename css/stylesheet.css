@@ -8,9 +8,9 @@ html {
 input {
     font-family: "MS Mincho";
     font-weight: 200;
-    font-size: 2vw;
+    font-size: 4vw;
     text-align: center;
-    height: 3vw;
+    height: 4.5vw;
     border: none;
     outline: none;
     padding: 0 10px;
@@ -40,14 +40,8 @@ input[type="button"]:hover {
     left: 0;
     right: 0;
     margin: 10vw auto 0;
-    height: 60vw;
+    height: 80vw;
     display: block;
-}
-
-.normal_text_box {
-    margin: 10vw auto;
-    text-align: center;
-    font-size: 5vw;
 }
 
 .intro {
@@ -66,8 +60,8 @@ input[type="button"]:hover {
     right: 0;
     margin: 10vw auto 0;
 
-    width: 60vw;
-    height: 60vw;
+    width: 80vw;
+    height: 80vw;
     background-color: rgba(0,0,0,0);
     box-shadow: 0px 0px 15vw 8vw rgba(0,0,0,1) inset;
 
@@ -81,8 +75,8 @@ input[type="button"]:hover {
     width: 100vw;
     transform: translate(-50%, -50%);
     text-align: center;
-    font-size: 2vw;
-    line-height: 3.5vw;
+    font-size: 4vw;
+    line-height: 5vw;
 }
 
 .fadein {
