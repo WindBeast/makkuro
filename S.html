@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<HTML>
+<HEAD>
+    <TITLE></TITLE>
+    <meta name="viewport" content="width=device-width user-scalable=no">
+    <LINK REL="stylesheet" TYPE="text/css" HREF="css/doctor.css">
+    <LINK REL="stylesheet" TYPE="text/css" HREF="css/stylesheet.css">
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        function TurnBack() {
+            var bl = document.getElementById("backlight");
+            var fl = document.getElementById("frontlight");
+            var bi = document.getElementById("backimg");
+            var fi = document.getElementById("frontimg");
+            bl.classList.remove("hidden");
+            fl.classList.remove("fadein");
+            bl.classList.remove("fadeout");
+            fl.classList.add("fadeout");
+            bl.classList.add("fadein");
+            bi.classList.remove("hidden");
+            fi.classList.remove("fadein");
+            bi.classList.remove("fadeout");
+            fi.classList.add("fadeout");
+            bi.classList.add("fadein");
+        }
+        function TurnFront() {
+            var bl = document.getElementById("backlight");
+            var fl = document.getElementById("frontlight");
+            var bi = document.getElementById("backimg");
+            var fi = document.getElementById("frontimg");
+            bl.classList.remove("fadein");
+            fl.classList.remove("fadeout");
+            bl.classList.add("fadeout");
+            fl.classList.add("fadein");
+            bi.classList.remove("fadein");
+            fi.classList.remove("fadeout");
+            bi.classList.add("fadeout");
+            fi.classList.add("fadein");
+        }
+    </script>
+</HEAD>
+<BODY>
+    <img src="pic/Sback.png" class="floor hidden" id="backimg">
+    <div id="backlight" class="light hidden" style="margin-top: 0vw;">
+        <div class="light-inner">
+            目の前にはただ、<br/>
+            道が伸びているのみだ。<br/>
+            <input type="button" value="進む" onclick="location.href='1km.html'"/><br/>
+            <input type="button" value="うしろを向く" onclick="TurnFront();"/>
+        </div>
+    </div>
+    <img src="pic/Sfront.png" class="floor fadein" id="frontimg">
+    <div id="frontlight" class="light fadein" style="margin-top: 0vw;">
+        <div class="light-inner">
+            ──場所とは、"点"である。<br/>
+            君が今いる場所もまた、"点"だ。<br/>
+            その"点"の名前を答えよ。<br/>
+            <input type="text" id="form" placeholder="input the answer"><input type="button" id="button" value="解答" style="margin-left: 2vw;"><br/>
+            <br/>
+            ヒントは君のうしろに。<br/>
+            <input type="button" value="うしろを向く" onclick="TurnBack();"/>
+        </div>
+    </div>
+    <script type="text/javascript">
+        //以下は正誤判定(ひろいもの)
+        var setting;
+
+        window.onload = function(){
+
+            setting = [
+                {
+                    form: document.getElementById('form'),
+                    button: document.getElementById('button'),
+                    message: document.getElementById('message'),
+                    folder: 'answer',
+                    sending: false,
+                },
+            ]
+
+            for(var i = 0; i < setting.length; ++i) {
+                if( setting[i]['button'] ) {
+                    setting[i]['button'].onclick = (function(_i){return function(){ checkAns(_i); };})(i);
+                }
+                if( setting[i]['form'] ) {
+                    setting[i]['form'].onkeydown = (function(_i){ return function(event){
+                        if (event == undefined) event = window.event;
+                        if (event.keyCode == 13) checkAns(_i);
+                    }})(i);
+                }
+            }
+
+        }
+
+        function checkAns(id){
+
+            if(setting[id]['sending']) return;
+            setting[id]['sending'] = true;
+            setting[id]['button'].disabled = true;
+            setting[id]['message'].innerText = "チェック中...";
+
+            var request = new XMLHttpRequest();
+            request.timeout = 10000;
+            request.open('GET', setting[id]['folder'] + '/' + encodeURIComponent(setting[id]['form'].value));
+            request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            request.send(null);
+
+            request.onreadystatechange = function(){
+                if(request.readyState == 4){
+                    if( setting[id]['form'].value == '' ){
+                        window.location.href = "S.html";
+                    } else {
+                        switch(request.status){
+                            case 200:
+                                location.href = request.responseText;
+                                break;
+                            case 404:
+                                location.href = "S.html"
+                                break;
+                            default:
+                                setting[id]['message'].innerText = "通信障害が発生しています。もう一度やりなおしてください。";
+                                break;
+                        }
+                    }
+                    setting[id]['button'].disabled = false;
+                    setting[id]['sending'] = false;
+                }
+            }
+
+            request.ontimeout = function(){
+                setting[id]['message'].innerText = "タイムアウトしました。もう一度やりなおしてください。";
+                setting[id]['button'].disabled = false;
+                setting[id]['sending'] = false;
+            }
+        }
+    </script>
+</BODY>
+</HTML>

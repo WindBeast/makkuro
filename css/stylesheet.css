@@ -1,0 +1,98 @@
+html {
+    background-color: black;
+    font-family: "MS Mincho";
+    font-weight: 200;
+    color: white;
+}
+
+button, input {
+    font-family: "MS Mincho";
+    font-weight: 200;
+    font-size: 2vw;
+    text-align: center;
+}
+
+.floor {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    height: 60vw;
+    display: block;
+}
+
+.normal_text_box {
+    margin: 10vw auto;
+    text-align: center;
+    font-size: 5vw;
+}
+
+.intro {
+    opacity:0;
+}
+
+.intro span {
+    opacity: 0;
+    -webkit-transition: .6s ease-in-out;
+    transition: .6s ease-in-out;
+}
+
+.light {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+
+    width: 60vw;
+    height: 60vw;
+    background-color: rgba(0,0,0,0);
+    box-shadow: 0px 0px 15vw 8vw rgba(0,0,0,1) inset;
+
+    color: white;
+}
+
+.light-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 2vw;
+    line-height: 3.5vw;
+}
+
+.fadein {
+    animation: fadein-keyframes 3s ease 0s 1 forwards;
+}
+
+.fadeout {
+    animation: fadeout-keyframes 3s ease 0s 1 forwards;
+}
+
+@keyframes fadeout-keyframes {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes fadein-keyframes {
+    0% {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
