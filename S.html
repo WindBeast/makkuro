@@ -114,7 +114,7 @@
                     } else {
                         switch(request.status){
                             case 200:
-                                location.href = request.responseText;
+                            setting[id]['message'].innerText = request.responseText;
                                 break;
                             case 404:
                                 setting[id]['message'].innerText = "不正解です。";
