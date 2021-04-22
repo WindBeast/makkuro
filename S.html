@@ -41,17 +41,8 @@
     </script>
 </HEAD>
 <BODY>
-    <img src="pic/Sback.png" class="floor hidden" id="backimg">
-    <div id="backlight" class="light hidden" style="margin-top: 0vw;">
-        <div class="light-inner">
-            目の前にはただ、<br/>
-            道が伸びているのみだ。<br/>
-            <input type="button" value="進む" onclick="location.href='1km.html'"/><br/>
-            <input type="button" value="うしろを向く" onclick="TurnFront();"/>
-        </div>
-    </div>
     <img src="pic/Sfront.png" class="floor fadein" id="frontimg">
-    <div id="frontlight" class="light fadein" style="margin-top: 0vw;">
+    <div id="frontlight" class="light fadein">
         <div class="light-inner">
             ──場所とは、"点"である。<br/>
             君が今いる場所もまた、"点"だ。<br/>
@@ -61,6 +52,16 @@
             <br/>
             ヒントは君のうしろに。<br/>
             <input type="button" value="うしろを向く" onclick="TurnBack();"/>
+        </div>
+    </div>
+    <img src="pic/Sback.png" class="floor hidden" id="backimg">
+    <div id="backlight" class="light hidden">
+        <div class="light-inner">
+            目の前にはただ、<br/>
+            道が伸びている。<br/>
+            <input type="button" value="進む" onclick="location.href='1km.html'"/><br/>
+            <br/>
+            <input type="button" value="うしろを向く" onclick="TurnFront();"/>
         </div>
     </div>
     <script type="text/javascript">

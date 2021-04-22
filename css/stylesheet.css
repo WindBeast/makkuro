@@ -5,18 +5,41 @@ html {
     color: white;
 }
 
-button, input {
+input {
     font-family: "MS Mincho";
     font-weight: 200;
     font-size: 2vw;
     text-align: center;
+    height: 3vw;
+    border: none;
+    outline: none;
+    padding: 0 10px;
+}
+
+input[type="button"] {
+    display: inline-block;
+    background-color: #000074ff;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+input[type="button"]:hover {
+    opacity: 0.8;
+}
+
+.XXkm {
+    position: absolute;
+    top: 5vw;
+    right: 15vw;
+    font-size: 3vw;
 }
 
 .floor {
     position: absolute;
     left: 0;
     right: 0;
-    margin: 0 auto;
+    margin: 10vw auto 0;
     height: 60vw;
     display: block;
 }
@@ -41,7 +64,7 @@ button, input {
     position: absolute;
     left: 0;
     right: 0;
-    margin: 0 auto;
+    margin: 10vw auto 0;
 
     width: 60vw;
     height: 60vw;
